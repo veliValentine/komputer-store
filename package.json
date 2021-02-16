@@ -1,0 +1,15 @@
+{
+  "name": "kopmuter-store",
+  "version": "1.0.0",
+  "description": "Task1 - Front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016\u001b[2~\u001b[2~\u001b[21~"
+  },
+  "author": "veliValentine",
+  "license": "Unlicense"
+}
