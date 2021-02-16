@@ -45,11 +45,11 @@ const Bank = () => {
             console.log('loan out of range');
             return
         }
-        setLoan(amount);
+        addLoanAndBalance(amount);
     }
 
     const payLoan = () => {
-        const amount = Number(prompt('Repayment of loan. Amount: '));
+        const amount = Number(prompt('Repayment of the loan.\nEnter repayment amount: '));
         if (amount == null || amount == "" || isNaN(amount) || amount <= 0) {
             return;
         }
@@ -60,10 +60,10 @@ const Bank = () => {
          *  and what we should payback
          */
         const payment = Math.min(amount, bankBalance, loanBalance);
-        setLoan(-payment)
+        addLoanAndBalance(-payment)
     }
 
-    const setLoan = (amount) => {
+    const addLoanAndBalance = (amount) => {
         // Update bank and loan balance
         addBankBalance(amount);
         addLoanBalance(amount);
@@ -78,15 +78,26 @@ const Bank = () => {
             return false;
         }
         if (loanBalance > 0) {
-            const loanPayment = Number((amount * 0.1).toFixed(2));
-            if (loanPayment < loanBalance) {
-                setLoan(-loanPayment);
-            } else {
-                setLoan(-loanBalance);
-            }
+            // minimum loanpayback between loanBalance and minimum payment from salary
+            const loanPayment = Math.min(loanBalance, Number((amount * 0.1).toFixed(2)));
+            addLoanAndBalance(-loanPayment);
         }
         addBankBalance(amount);
         Work().resetBalance();
+        return true;
+    }
+
+    const moveToLoan = () => {
+        const amount = Work.getWorkBalance();
+        if (amount < 0) {
+            return false;
+        }
+        if (amount > loanBalance) {
+            addBankBalance(amount - loanBalance);
+        }
+        const payback = Math.min(loanBalance, amount);
+        addLoanAndBalance(-payback);
+        Work.resetBalance();
         return true;
     }
 
@@ -102,6 +113,7 @@ const Bank = () => {
         getLoan,
         payLoan,
         moveToBank,
+        moveToLoan,
     };
 }
 
