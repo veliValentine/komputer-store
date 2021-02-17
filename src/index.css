@@ -44,3 +44,16 @@ p {
     text-align: right;
     width: 80%;
 }
+
+.buttons-container {
+    padding: 1mm;
+    display: flex;
+}
+
+.buttons-container button {
+    padding: 3%;
+    width: 3cm;
+    margin: auto;
+    border-radius: 1cm;
+    font-weight: bold;
+}
