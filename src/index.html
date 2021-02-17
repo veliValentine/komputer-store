@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komputer app</title>
+
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="stylesheet" href="/src/bank/bank.css">
+    <link rel="stylesheet" href="/src/work/work.css">
+</head>
+
+<body>
+    <header class="header-container">
+        <h3>Komputer store</h3>
+    </header>
+    <div class="cards-container">
+
+
+
+
+        <div class="card">
+            <div class="bank-container">
+                <h3>Bank</h3>
+                <p>
+                    <span>Balance: </span>
+                    <span class="balance" id="bank-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <p id="loan-balance-paragraph">
+                    <span>Loan: </span>
+                    <span class="balance" id="loan-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <div class="buttons-container">
+                    <button id="loan-button" onclick="console.log('Money!')">Get loan!</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="work-container">
+                <h3>Work</h3>
+                <p>
+                    <span>Pay: </span>
+                    <span class="balance" id="work-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <div class="buttons-container">
+                    <button id="bank-button" onclick="console.log('Work balance to bank')">Bank</button>
+                    <button id="work-button" onclick="console.log('Work work')">Work</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h3>Laptops</h3>
+        </div>
+    </div>
+
+
+
+
+    <div class="info-container">
+        <h3>Info</h3>
+    </div>
+
+
+
+    <script src="/src/bank/bank.js"></script>
+    <script src="/src/work/work.js"></script>
+</body>
+
+</html>

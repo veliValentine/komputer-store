@@ -1,40 +1,39 @@
 const Work = () => {
-    const getWorkBalance = () => Number(document.getElementById('work-balance').innerHTML);
-    const setBalance = () => document.getElementById('work-balance').innerHTML = workBalance;
+  const getWorkBalance = () => Number(document.getElementById('work-balance').innerHTML);
 
-    const work = () => addWorkBalance(100);
+  let workBalance = getWorkBalance();
 
-    const addWorkBalance = (amount) => {
-        if (amount < 0) {
-            setBalance();
-            return;
-        }
-        workBalance += amount;
-        setBalance();
-    }
+  const setBalance = () => { document.getElementById('work-balance').innerHTML = workBalance; };
 
-    const resetBalance = () => {
-        workBalance = 0;
-        setBalance();
-    }
-
-    const moveToBank = () => {
-        if (Bank().moveToBank(workBalance)) {
-            resetBalance();
-        }
-    }
-
-    let workBalance = getWorkBalance();
-
+  const setWorkButton = () => {
     const workButton = document.getElementById('work-button');
     workButton.setAttribute('onclick', 'Work().work()');
+  };
 
+  const setBankButton = () => {
     const bankButton = document.getElementById('bank-button');
-    bankButton.setAttribute('onclick', 'Work().moveToBank()');
-    return {
-        work,
-        resetBalance,
-        moveToBank,
-    }
-}
+    bankButton.setAttribute('onclick', 'Bank().moveToBank()');
+  };
+
+  const addWorkBalance = (amount) => {
+    workBalance += amount;
+    setBalance();
+  };
+
+  const work = () => addWorkBalance(100);
+
+  const resetBalance = () => {
+    workBalance = 0;
+    setBalance();
+  };
+
+  setWorkButton();
+  setBankButton();
+
+  return {
+    work,
+    getWorkBalance,
+    resetBalance
+  };
+};
 Work();
