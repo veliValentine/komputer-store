@@ -12,14 +12,36 @@ const Bank = () => {
     }
   };
 
+  const setLoanButton = (onClickFunction, buttonText) => {
+    const bankLoanButton = document.getElementById('loan-button');
+    bankLoanButton.setAttribute('onclick', onClickFunction);
+    bankLoanButton.innerHTML = buttonText;
+  };
+
+  const clearChildNodes = (parent) => {
+    while (parent.hasChildNodes()) {
+      parent.removeChild(parent.childNodes[0]);
+    }
+  };
+
+  const createLoanPaybackButton = (parent) => {
+    if (parent.hasChildNodes()) {
+      return;
+    }
+    const button = document.createElement('button');
+    button.setAttribute('onclick', 'Bank().moveToLoan()');
+    button.innerHTML = 'Payback loan';
+    parent.appendChild(button);
+  };
+
   const getLoanButton = () => {
-    const loanButton = document.getElementById('loan-button');
+    const workLoanButtonContainer = document.getElementById('work-loan-button-container');
     if (loanBalance > 0) {
-      loanButton.setAttribute('onclick', 'Bank().payLoan()');
-      loanButton.innerHTML = 'Pay loan!';
+      setLoanButton('Bank().payLoan()', 'Pay loan!');
+      createLoanPaybackButton(workLoanButtonContainer);
     } else {
-      loanButton.setAttribute('onclick', 'Bank().getLoan()');
-      loanButton.innerHTML = 'Get loan!';
+      setLoanButton('Bank().getLoan()', 'Get loan!');
+      clearChildNodes(workLoanButtonContainer);
     }
   };
 
@@ -31,15 +53,15 @@ const Bank = () => {
   const addLoanBalance = (amount) => {
     loanBalance += amount;
     setLoanBalance();
+    // update shown buttons
+    getLoanButton();
+    hideLoanBalance();
   };
 
   const addLoanAndBalance = (amount) => {
     // Update bank and loan balance
     addBankBalance(amount);
     addLoanBalance(amount);
-    // update shown buttons
-    getLoanButton();
-    hideLoanBalance();
   };
 
   const checkNotValidArgument = (variable) => {
@@ -84,12 +106,12 @@ const Bank = () => {
       return false;
     }
     if (loanBalance > 0) {
+      // Payback 10% of work balance to loan
       const loanPayment = Math.min(loanBalance, Number((workBalance * 0.1).toFixed(2)));
       addLoanAndBalance(-loanPayment);
     }
     addBankBalance(workBalance);
-    workBalance = 0;
-    document.getElementById('work-balance').innerHTML = workBalance;
+    Work().resetBalance();
     return true;
   };
 
@@ -101,7 +123,7 @@ const Bank = () => {
       addBankBalance(workBalance - loanBalance);
     }
     const payback = Math.min(loanBalance, workBalance);
-    addLoanAndBalance(-payback);
+    addLoanBalance(-payback);
     Work().resetBalance();
     return true;
   };
