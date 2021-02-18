@@ -55,11 +55,55 @@ const data = [
   }
 ];
 
+let chosenLaptop = data[0];
+
+const setLaptopInfo = () => {
+  const setImage = () => {
+    const image = document.getElementById('info-image');
+    image.setAttribute('src', chosenLaptop.image);
+  };
+
+  const setName = () => {
+    const name = document.getElementById('info-name');
+    name.innerHTML = chosenLaptop.name;
+  };
+
+  const setDescription = () => {
+    const description = document.getElementById('info-description');
+    description.innerHTML = chosenLaptop.description;
+  };
+
+  const setPrice = () => {
+    const price = document.getElementById('info-price-span');
+    price.innerHTML = chosenLaptop.price;
+  };
+
+  const setBuyButton = () => {
+    const buyButton = document.getElementById('info-buy');
+    buyButton.setAttribute('onclick', 'Bank().buyLaptop()');
+  };
+
+  const updateInformation = () => {
+    setImage();
+    setDescription();
+    setName();
+    setPrice();
+  };
+
+  updateInformation();
+  setBuyButton();
+};
+
 const Laptops = () => {
   const selectOptions = document.getElementById('select-options');
   selectOptions.setAttribute('onchange', 'Laptops().choose()');
 
-  const chosenOptionIndex = () => selectOptions.selectedIndex;
+  const chosenOptionIndex = () => {
+    const selectedOptionIndex = selectOptions.selectedIndex;
+    return selectedOptionIndex === -1 ? 0 : selectedOptionIndex;
+  };
+
+  chosenLaptop = data[chosenOptionIndex()];
 
   const creteOption = (laptop, index) => {
     const option = document.createElement('option');
@@ -104,7 +148,7 @@ const Laptops = () => {
   };
 
   const addRows = () => {
-    const { features: laptopFeatures } = data.find(({ id }) => id === chosenOptionIndex());
+    const { features: laptopFeatures } = chosenLaptop;
     if (!laptopFeatures || (laptopFeatures.length < 1)) {
       addRowHeadingData('No features');
       return;
@@ -122,8 +166,7 @@ const Laptops = () => {
     updateOptions();
   }
   updateFeatureList();
-
-  const chosenLaptop = () => data[chosenOptionIndex()];
+  setLaptopInfo();
 
   return {
     choose: chosenOptionIndex,

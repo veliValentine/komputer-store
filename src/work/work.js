@@ -1,8 +1,5 @@
+let workBalance = 0;
 const Work = () => {
-  const getWorkBalance = () => Number(document.getElementById('work-balance').innerHTML);
-
-  let workBalance = getWorkBalance();
-
   const setBalance = () => { document.getElementById('work-balance').innerHTML = workBalance; };
 
   const setWorkButton = () => {
@@ -32,7 +29,6 @@ const Work = () => {
 
   return {
     work,
-    getWorkBalance,
     resetBalance
   };
 };

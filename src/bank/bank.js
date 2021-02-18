@@ -1,10 +1,6 @@
+let bankBalance = 0;
+let loanBalance = 0;
 const Bank = () => {
-  const getBankBalance = () => Number(document.getElementById('bank-balance').innerHTML);
-  const getLoanBalance = () => Number(document.getElementById('loan-balance').innerHTML);
-
-  let bankBalance = getBankBalance();
-  let loanBalance = getLoanBalance();
-
   const setBankBalance = () => { document.getElementById('bank-balance').innerHTML = bankBalance; };
   const setLoanBalance = () => { document.getElementById('loan-balance').innerHTML = loanBalance; };
 
@@ -46,9 +42,17 @@ const Bank = () => {
     hideLoanBalance();
   };
 
+  const checkNotValidArgument = (variable) => {
+    return variable == null || variable === undefined || variable === '' || Number.isNaN(variable);
+  };
+
   const getLoan = () => {
+    if (loanBalance > 0) {
+      console.log('Already have a loan');
+      return;
+    }
     const amount = Number(prompt(`Enter the amount of loan: \nMax amount of loan is ${bankBalance * 2}`));
-    if (amount === null || amount === '' || Number.isNaN(amount)) {
+    if (checkNotValidArgument(amount)) {
       console.log('no loan I see');
       return;
     }
@@ -62,7 +66,7 @@ const Bank = () => {
 
   const payLoan = () => {
     const amount = Number(prompt('Repayment of the loan.\nEnter repayment amount: '));
-    if (amount === null || amount === '' || Number.isNaN(amount) || amount <= 0) {
+    if (checkNotValidArgument(amount) || amount <= 0) {
       return;
     }
     /**
@@ -76,44 +80,51 @@ const Bank = () => {
   };
 
   const moveToBank = () => {
-    const amount = Work().getWorkBalance();
-    if (amount < 0) {
+    if (workBalance < 0) {
       return false;
     }
     if (loanBalance > 0) {
-      // minimum loanpayback between loanBalance and minimum payment from salary
-      const loanPayment = Math.min(loanBalance, Number((amount * 0.1).toFixed(2)));
+      const loanPayment = Math.min(loanBalance, Number((workBalance * 0.1).toFixed(2)));
       addLoanAndBalance(-loanPayment);
     }
-    addBankBalance(amount);
-    Work().resetBalance();
+    addBankBalance(workBalance);
+    workBalance = 0;
+    document.getElementById('work-balance').innerHTML = workBalance;
     return true;
   };
 
   const moveToLoan = () => {
-    const amount = Work.getWorkBalance();
-    if (amount < 0) {
+    if (workBalance < 0 || loanBalance < 0) {
       return false;
     }
-    if (amount > loanBalance) {
-      addBankBalance(amount - loanBalance);
+    if (workBalance > loanBalance) {
+      addBankBalance(workBalance - loanBalance);
     }
-    const payback = Math.min(loanBalance, amount);
+    const payback = Math.min(loanBalance, workBalance);
     addLoanAndBalance(-payback);
-    Work.resetBalance();
+    Work().resetBalance();
     return true;
+  };
+
+  const buyLaptop = () => {
+    const price = chosenLaptop.price;
+    if (price <= bankBalance) {
+      addBankBalance(-price);
+      alert(`${chosenLaptop.name} bought`);
+    } else {
+      alert('Not enough money in the bank');
+    }
   };
 
   getLoanButton();
   hideLoanBalance();
 
   return {
-    getBankBalance,
-    getLoanBalance,
     getLoan,
     payLoan,
     moveToBank,
-    moveToLoan
+    moveToLoan,
+    buyLaptop
   };
 };
 
