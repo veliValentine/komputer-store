@@ -1,15 +1,21 @@
 {
-  "name": "kopmuter-store",
-  "version": "1.0.0",
-  "description": "Task1 - Front end",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "\u0016\u001b[2~\u001b[2~\u001b[21~"
-  },
-  "author": "veliValentine",
-  "license": "Unlicense"
+    "name": "kopmuter-store",
+    "version": "1.0.0",
+    "description": "Task1 - Front end",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js",
+        "lint": "./node_modules/.bin/eslint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/veliValentine/komputer-store"
+    },
+    "author": "veliValentine",
+    "license": "Unlicense",
+    "devDependencies": {
+        "eslint": "^7.20.0",
+        "eslint-config-airbnb-base": "^14.2.1"
+    }
 }

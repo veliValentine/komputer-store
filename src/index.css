@@ -1,0 +1,75 @@
+body {
+    background-color: whitesmoke;
+}
+
+header.header-container {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1px;
+}
+
+div.cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10mm;
+    border-spacing: 1cm;
+}
+
+div.card {
+    background-color: rgb(238, 238, 238);
+    padding: 15mm;
+    margin: 1cm;
+    border-radius: 5mm;
+    height: 6cm;
+}
+
+#bank-buttons-container {
+    margin-top: 1cm;
+}
+
+.balance-paragraph {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.balance {
+    text-align: right;
+    width: 80%;
+}
+
+#currency {
+    text-align: end;
+}
+
+#feature-table {
+    padding: 5mm;
+}
+
+.info-container {
+    background-color: rgb(238, 238, 238);
+    border-radius: 5mm;
+    padding: 1cm;
+    margin-left: 3cm;
+    margin-right: 3cm;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.left-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 15cm;
+}
+
+#info-image {
+    width: 3cm;
+    height: 3cm;
+    padding: 5mm;
+}

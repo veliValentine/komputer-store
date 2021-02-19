@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komputer app</title>
+
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <header class="header-container">
+        <p>Komputer store</p>
+    </header>
+    <div class="cards-container">
+        <div class="card">
+            <div class="bank-container">
+                <h3>Bank</h3>
+                <p id="bank-balance-paragraph" class="balance-paragraph">
+                    <span>Balance: </span>
+                    <span class="balance" id="bank-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <p id="loan-balance-paragraph" class="balance-paragraph">
+                    <span>Loan: </span>
+                    <span class="balance" id="loan-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <div id="bank-buttons-container">
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="work-container">
+                <h3>Work</h3>
+                <p id="work-balance-paragraph" class="balance-paragraph">
+                    <span>Pay: </span>
+                    <span class="balance" id="work-balance">0</span>
+                    <span id="currency">€</span>
+                </p>
+                <div id="work-loan-button-container">
+                </div>
+                <div class="buttons-container">
+                    <button id="bank-button" onclick="console.log('Work balance to bank')">Bank</button>
+                    <button id="work-button" onclick="console.log('Work work')">Work</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h4>Laptops</h4>
+            <form>
+                <select id="select-options"></select>
+            </form>
+            <table id="feature-table"></table>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="left-info-container">
+            <div>
+                <img id="info-image" alt="laptop_picture"></img>
+            </div>
+            <div id="description">
+                <h3 id="info-name"></h3>
+                <p id="info-description"></p>
+            </div>
+        </div>
+        <div class="right-info-container">
+            <h3 id="info-price-paragraph" class="balance-paragraph">
+                <span>Price: </span>
+                <span class="balance" id="info-price-span"></span>
+                <span id="currency">€</span>
+            </h3>
+            <button id="info-buy">BUY NOW</button>
+        </div>
+    </div>
+
+    <script src="./components/DomManipulation.js"></script>
+    <script src="./components/Utils.js"></script>
+    <script src="./components/Bank.js"></script>
+    <script src="./components/Work.js"></script>
+    <script src="./components/Laptops.js"></script>
+</body>
+
+</html>
