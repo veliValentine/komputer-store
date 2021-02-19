@@ -1,15 +1,13 @@
 let workBalance = 0;
 const Work = () => {
-  const setBalance = () => { document.getElementById('work-balance').innerHTML = workBalance; };
+  const setBalance = () => { getElementById('work-balance').innerHTML = workBalance; };
 
   const setWorkButton = () => {
-    const workButton = document.getElementById('work-button');
-    workButton.setAttribute('onclick', 'Work().work()');
+    setAttributeById('work-button', 'onclick', 'Work().work()');
   };
 
   const setBankButton = () => {
-    const bankButton = document.getElementById('bank-button');
-    bankButton.setAttribute('onclick', 'Bank().moveToBank()');
+    setAttributeById('bank-button', 'onclick', 'Bank().moveToBank()');
   };
 
   const addWorkBalance = (amount) => {

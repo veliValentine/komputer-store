@@ -1,47 +1,35 @@
 let bankBalance = 0;
 let loanBalance = 0;
+
+let hasLaptop = false;
+let firstLoan = false;
+
 const Bank = () => {
-  const setBankBalance = () => { document.getElementById('bank-balance').innerHTML = bankBalance; };
-  const setLoanBalance = () => { document.getElementById('loan-balance').innerHTML = loanBalance; };
+  const setBankBalance = () => { getElementById('bank-balance').innerHTML = bankBalance; };
+  const setLoanBalance = () => { getElementById('loan-balance').innerHTML = loanBalance; };
 
   const hideLoanBalance = () => {
     if (loanBalance > 0) {
-      document.getElementById('loan-balance-paragraph').style.display = '';
+      getElementById('loan-balance-paragraph').style.display = '';
     } else {
-      document.getElementById('loan-balance-paragraph').style.display = 'none';
+      getElementById('loan-balance-paragraph').style.display = 'none';
     }
   };
 
-  const setLoanButton = (onClickFunction, buttonText) => {
-    const bankLoanButton = document.getElementById('loan-button');
-    bankLoanButton.setAttribute('onclick', onClickFunction);
-    bankLoanButton.innerHTML = buttonText;
-  };
-
-  const clearChildNodes = (parent) => {
-    while (parent.hasChildNodes()) {
-      parent.removeChild(parent.childNodes[0]);
-    }
-  };
-
-  const createLoanPaybackButton = (parent) => {
-    if (parent.hasChildNodes()) {
-      return;
-    }
-    const button = document.createElement('button');
-    button.setAttribute('onclick', 'Bank().moveToLoan()');
-    button.innerHTML = 'Payback loan';
-    parent.appendChild(button);
-  };
+  const canNotGetSecondLoan = () => firstLoan && !hasLaptop;
 
   const getLoanButton = () => {
-    const workLoanButtonContainer = document.getElementById('work-loan-button-container');
+    const bankLoanButtonsContainer = getElementById('bank-buttons-container');
+    const workLoanButtonContainer = getElementById('work-loan-button-container');
+    clearChildNodes(bankLoanButtonsContainer);
+    clearChildNodes(workLoanButtonContainer);
     if (loanBalance > 0) {
-      setLoanButton('Bank().payLoan()', 'Pay loan!');
-      createLoanPaybackButton(workLoanButtonContainer);
-    } else {
-      setLoanButton('Bank().getLoan()', 'Get loan!');
-      clearChildNodes(workLoanButtonContainer);
+      // Loan payback buttons
+      createButton(bankLoanButtonsContainer, 'Bank().payLoan()', 'Pay loan!');
+      createButton(workLoanButtonContainer, 'Bank().moveToLoan()', 'Payback loan');
+    } else if (!canNotGetSecondLoan()) {
+      // get loan button for first loan or when we already have a laptop
+      createButton(bankLoanButtonsContainer, 'Bank().getLoan()', 'Get loan!');
     }
   };
 
@@ -64,11 +52,11 @@ const Bank = () => {
     addLoanBalance(amount);
   };
 
-  const checkNotValidArgument = (variable) => {
-    return variable == null || variable === undefined || variable === '' || Number.isNaN(variable);
-  };
-
   const getLoan = () => {
+    if (canNotGetSecondLoan()) {
+      console.log('Buy a laptop to get second loan');
+      return;
+    }
     if (loanBalance > 0) {
       console.log('Already have a loan');
       return;
@@ -84,6 +72,7 @@ const Bank = () => {
       return;
     }
     addLoanAndBalance(amount);
+    firstLoan = true;
   };
 
   const payLoan = () => {
@@ -133,9 +122,11 @@ const Bank = () => {
     if (price <= bankBalance) {
       addBankBalance(-price);
       alert(`${chosenLaptop.name} bought`);
+      hasLaptop = true;
     } else {
       alert('Not enough money in the bank');
     }
+    getLoanButton();
   };
 
   getLoanButton();

@@ -59,28 +59,26 @@ let chosenLaptop = data[0];
 
 const setLaptopInfo = () => {
   const setImage = () => {
-    const image = document.getElementById('info-image');
-    image.setAttribute('src', chosenLaptop.image);
+    setAttributeById('info-image', 'src', chosenLaptop.image);
   };
 
   const setName = () => {
-    const name = document.getElementById('info-name');
+    const name = getElementById('info-name');
     name.innerHTML = chosenLaptop.name;
   };
 
   const setDescription = () => {
-    const description = document.getElementById('info-description');
+    const description = getElementById('info-description');
     description.innerHTML = chosenLaptop.description;
   };
 
   const setPrice = () => {
-    const price = document.getElementById('info-price-span');
+    const price = getElementById('info-price-span');
     price.innerHTML = chosenLaptop.price;
   };
 
   const setBuyButton = () => {
-    const buyButton = document.getElementById('info-buy');
-    buyButton.setAttribute('onclick', 'Bank().buyLaptop()');
+    setAttributeById('info-buy', 'onclick', 'Bank().buyLaptop()');
   };
 
   const updateInformation = () => {
@@ -95,7 +93,7 @@ const setLaptopInfo = () => {
 };
 
 const Laptops = () => {
-  const selectOptions = document.getElementById('select-options');
+  const selectOptions = getElementById('select-options');
   selectOptions.setAttribute('onchange', 'Laptops().choose()');
 
   const chosenOptionIndex = () => {
@@ -114,12 +112,6 @@ const Laptops = () => {
     selectOptions.options.add(option, laptop.id);
   };
 
-  const clearChildNodes = (parent) => {
-    while (parent.hasChildNodes()) {
-      parent.removeChild(parent.childNodes[0]);
-    }
-  };
-
   const addOptions = () => {
     data.forEach((laptop, index) => creteOption(laptop, index));
   };
@@ -129,15 +121,7 @@ const Laptops = () => {
     addOptions();
   };
 
-  const featureTable = document.getElementById('feature-table');
-
-  const createRowElement = (text, type, table) => {
-    const row = document.createElement('tr');
-    const dataRow = document.createElement(type);
-    dataRow.innerHTML = text;
-    row.appendChild(dataRow);
-    table.appendChild(row);
-  };
+  const featureTable = getElementById('feature-table');
 
   const addRowHeadingData = (text) => {
     createRowElement(text, 'th', featureTable);
@@ -169,8 +153,7 @@ const Laptops = () => {
   setLaptopInfo();
 
   return {
-    choose: chosenOptionIndex,
-    chosenLaptop
+    choose: chosenOptionIndex
   };
 };
 Laptops();
