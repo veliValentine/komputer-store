@@ -5,8 +5,7 @@ let hasLaptop = false;
 let firstLoan = false;
 
 const Bank = () => {
-  const setBankBalance = () => { setInnerHTMLById('bank-balance', bankBalance); };
-
+  // Loan balance
   const setLoanBalance = () => {
     const loanbalanceParagraph = getElementById('loan-balance-paragraph');
     clearChildNodes(loanbalanceParagraph);
@@ -36,12 +35,6 @@ const Bank = () => {
     }
   };
 
-  const addBankBalance = (amount) => {
-    bankBalance += amount;
-    setBankBalance();
-    getLoanButton();
-  };
-
   const addLoanBalance = (amount) => {
     loanBalance += amount;
     setLoanBalance();
@@ -49,6 +42,16 @@ const Bank = () => {
     getLoanButton();
   };
 
+  // Bank Balance
+  const setBankBalance = () => { setInnerHTMLById('bank-balance', bankBalance); };
+
+  const addBankBalance = (amount) => {
+    bankBalance += amount;
+    setBankBalance();
+    getLoanButton();
+  };
+
+  // bank functions
   const addLoanAndBalance = (amount) => {
     // Update bank and loan balance
     addBankBalance(amount);
@@ -93,6 +96,19 @@ const Bank = () => {
     addLoanAndBalance(-payment);
   };
 
+  const moveToLoan = () => {
+    if (workBalance < 0 || loanBalance < 0) {
+      return false;
+    }
+    if (workBalance > loanBalance) {
+      addBankBalance(workBalance - loanBalance);
+    }
+    const payback = Math.min(loanBalance, workBalance);
+    addLoanBalance(-payback);
+    Work().resetBalance();
+    return true;
+  };
+
   const moveToBank = () => {
     if (workBalance < 0) {
       return false;
@@ -103,19 +119,6 @@ const Bank = () => {
       addLoanAndBalance(-loanPayment);
     }
     addBankBalance(workBalance);
-    Work().resetBalance();
-    return true;
-  };
-
-  const moveToLoan = () => {
-    if (workBalance < 0 || loanBalance < 0) {
-      return false;
-    }
-    if (workBalance > loanBalance) {
-      addBankBalance(workBalance - loanBalance);
-    }
-    const payback = Math.min(loanBalance, workBalance);
-    addLoanBalance(-payback);
     Work().resetBalance();
     return true;
   };
