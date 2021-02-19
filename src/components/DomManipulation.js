@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Global functions
 
 const createElement = (type) => document.createElement(type);
