@@ -9,7 +9,7 @@ const data = [
       'second1',
       'third1'
     ],
-    image: 'imagelink'
+    image: 'https://www.gigantti.fi/image/dv_web_D180001002572241/208108/hp-pavilion-15-eh0832no-156-kannettava-sininen.jpg?$fullsize$'
   },
   {
     id: 1,

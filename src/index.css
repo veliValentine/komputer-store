@@ -1,43 +1,39 @@
-div.header-container {
-    background-color: grey;
-    padding: 1%;
+body {
+    background-color: whitesmoke;
+}
+
+header.header-container {
+    background-color: black;
+    color: white;
     text-align: center;
+    padding: 1px;
 }
 
 div.cards-container {
-    background-color: aqua;
     display: flex;
-    padding: 1%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10mm;
+    border-spacing: 1cm;
 }
 
 div.card {
-    background-color: rgb(197, 197, 197);
-    width: 30%;
-    flex-direction: row;
-    border-radius: 10;
-    margin: auto;
-    border-radius: 10%;
-    padding: 1%;
+    background-color: rgb(238, 238, 238);
+    padding: 15mm;
+    margin: 1cm;
+    border-radius: 5mm;
+    height: 6cm;
 }
 
-h3 {
-    background-color: aqua;
-    text-align: center;
+#bank-buttons-container {
+    margin-top: 1cm;
 }
 
-div.info-container {
-    background-color: palegreen;
-    padding: 1%;
-}
-
-p {
+.balance-paragraph {
     width: 100%;
     display: flex;
     flex-direction: row;
-}
-
-#currency {
-    text-align: end;
 }
 
 .balance {
@@ -45,24 +41,35 @@ p {
     width: 80%;
 }
 
-.buttons-container {
-    padding: 1mm;
+#currency {
+    text-align: end;
+}
+
+#feature-table {
+    padding: 5mm;
+}
+
+.info-container {
+    background-color: rgb(238, 238, 238);
+    border-radius: 5mm;
+    padding: 1cm;
+    margin-left: 3cm;
+    margin-right: 3cm;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-.buttons-container button {
-    padding: 3%;
+.left-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 15cm;
+}
+
+#info-image {
     width: 3cm;
-    margin: auto;
-    border-radius: 1cm;
-    font-weight: bold;
-}
-
-
-#bank-button {
-    background-color: yellow;
-}
-
-#work-button {
-    background-color: rgb(167, 167, 255);
+    height: 3cm;
+    padding: 5mm;
 }

@@ -12,22 +12,18 @@
 
 <body>
     <header class="header-container">
-        <h3>Komputer store</h3>
+        <p>Komputer store</p>
     </header>
     <div class="cards-container">
-
-
-
-
         <div class="card">
             <div class="bank-container">
                 <h3>Bank</h3>
-                <p>
+                <p id="bank-balance-paragraph" class="balance-paragraph">
                     <span>Balance: </span>
                     <span class="balance" id="bank-balance">0</span>
                     <span id="currency">€</span>
                 </p>
-                <p id="loan-balance-paragraph">
+                <p id="loan-balance-paragraph" class="balance-paragraph">
                     <span>Loan: </span>
                     <span class="balance" id="loan-balance">0</span>
                     <span id="currency">€</span>
@@ -36,12 +32,10 @@
                 </div>
             </div>
         </div>
-
-
         <div class="card">
             <div class="work-container">
                 <h3>Work</h3>
-                <p>
+                <p id="work-balance-paragraph" class="balance-paragraph">
                     <span>Pay: </span>
                     <span class="balance" id="work-balance">0</span>
                     <span id="currency">€</span>
@@ -54,10 +48,7 @@
                 </div>
             </div>
         </div>
-
-
         <div class="card">
-            <h3>Laptops</h3>
             <h4>Laptops</h4>
             <form>
                 <select id="select-options"></select>
@@ -65,28 +56,25 @@
             <table id="feature-table"></table>
         </div>
     </div>
-
-
-
-
     <div class="info-container">
-        <h3>Info</h3>
-        <div>
-            <img id="info-image"> laptop_picture</img>
+        <div class="left-info-container">
+            <div>
+                <img id="info-image" alt="laptop_picture"></img>
+            </div>
+            <div id="description">
+                <h3 id="info-name"></h3>
+                <p id="info-description"></p>
+            </div>
         </div>
-        <div>
-            <h4 id="info-name"></h4>
-            <p id="info-description"></p>
-        </div>
-        <div>
-            <p id="info-price-paragraph">
-                <span id="info-price-span"></span>
+        <div class="right-info-container">
+            <h3 id="info-price-paragraph" class="balance-paragraph">
+                <span>Price: </span>
+                <span class="balance" id="info-price-span"></span>
                 <span id="currency">€</span>
-            </p>
+            </h3>
             <button id="info-buy">BUY NOW</button>
         </div>
     </div>
-
 
     <script src="./components/DomManipulation.js"></script>
     <script src="./components/Utils.js"></script>
