@@ -5,14 +5,15 @@ let hasLaptop = false;
 let firstLoan = false;
 
 const Bank = () => {
-  const setBankBalance = () => { getElementById('bank-balance').innerHTML = bankBalance; };
-  const setLoanBalance = () => { getElementById('loan-balance').innerHTML = loanBalance; };
+  const setBankBalance = () => { setInnerHTMLById('bank-balance', bankBalance); };
 
-  const hideLoanBalance = () => {
+  const setLoanBalance = () => {
+    const loanbalanceParagraph = getElementById('loan-balance-paragraph');
+    clearChildNodes(loanbalanceParagraph);
     if (loanBalance > 0) {
-      getElementById('loan-balance-paragraph').style.display = '';
-    } else {
-      getElementById('loan-balance-paragraph').style.display = 'none';
+      createSpan(loanbalanceParagraph, 'Loan: ');
+      createSpan(loanbalanceParagraph, loanBalance, 'balance', 'loan-balance');
+      createSpan(loanbalanceParagraph, '€');
     }
   };
 
@@ -29,13 +30,16 @@ const Bank = () => {
       createButton(workLoanButtonContainer, 'Bank().moveToLoan()', 'Payback loan');
     } else if (!canNotGetSecondLoan()) {
       // get loan button for first loan or when we already have a laptop
-      createButton(bankLoanButtonsContainer, 'Bank().getLoan()', 'Get loan!');
+      if (bankBalance > 0) {
+        createButton(bankLoanButtonsContainer, 'Bank().getLoan()', 'Get loan!');
+      }
     }
   };
 
   const addBankBalance = (amount) => {
     bankBalance += amount;
     setBankBalance();
+    getLoanButton();
   };
 
   const addLoanBalance = (amount) => {
@@ -43,7 +47,6 @@ const Bank = () => {
     setLoanBalance();
     // update shown buttons
     getLoanButton();
-    hideLoanBalance();
   };
 
   const addLoanAndBalance = (amount) => {
@@ -130,7 +133,7 @@ const Bank = () => {
   };
 
   getLoanButton();
-  hideLoanBalance();
+  setLoanBalance();
 
   return {
     getLoan,

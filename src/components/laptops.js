@@ -63,18 +63,15 @@ const setLaptopInfo = () => {
   };
 
   const setName = () => {
-    const name = getElementById('info-name');
-    name.innerHTML = chosenLaptop.name;
+    setInnerHTMLById('info-name', chosenLaptop.name);
   };
 
   const setDescription = () => {
-    const description = getElementById('info-description');
-    description.innerHTML = chosenLaptop.description;
+    setInnerHTMLById('info-description', chosenLaptop.description);
   };
 
   const setPrice = () => {
-    const price = getElementById('info-price-span');
-    price.innerHTML = chosenLaptop.price;
+    setInnerHTMLById('info-price-span', chosenLaptop.price);
   };
 
   const setBuyButton = () => {

@@ -1,6 +1,6 @@
 let workBalance = 0;
 const Work = () => {
-  const setBalance = () => { getElementById('work-balance').innerHTML = workBalance; };
+  const setBalance = () => { setInnerHTMLById('work-balance', workBalance); };
 
   const setWorkButton = () => {
     setAttributeById('work-button', 'onclick', 'Work().work()');
